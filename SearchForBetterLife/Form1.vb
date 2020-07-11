@@ -5,7 +5,9 @@ Public Class Form1
 	Private resultPath As New List(Of String)
 
 	Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
+		RichTextBox1.Text = ""
 		Try
+			Dim i As Integer = 0
 			For Each dirItemTemp In Directory.EnumerateFiles(FolderName.Text, "*." & FileExtension.Text, SearchOption.AllDirectories) _
 					.Where(Function(file) file.IndexOf(ProjectName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1 _
 										  AndAlso file.IndexOf(CustomerName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1) _
@@ -16,7 +18,9 @@ Public Class Form1
 				RichTextBox1.SelectionStart = Len(RichTextBox1.Text)
 				RichTextBox1.ScrollToCaret()
 				RichTextBox1.Select()
+				i += 1
 			Next
+			MsgBox("Found " & i & " item(s)")
 		Catch err As UnauthorizedAccessException
 			MsgBox(err)
 		End Try
