@@ -23,9 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.SearchButton = New System.Windows.Forms.Button()
-        Me.CustomerName = New System.Windows.Forms.TextBox()
-        Me.ProjectName = New System.Windows.Forms.TextBox()
-        Me.FileExtension = New System.Windows.Forms.TextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.FolderName = New System.Windows.Forms.TextBox()
         Me.SelectFolderButton = New System.Windows.Forms.Button()
@@ -33,40 +30,29 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.CustomerName = New System.Windows.Forms.ComboBox()
+        Me.ProjectName = New System.Windows.Forms.ComboBox()
+        Me.TypeName = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.FileExtension = New System.Windows.Forms.ComboBox()
+        Me.PartNumber = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.PartName = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'SearchButton
         '
-        Me.SearchButton.Location = New System.Drawing.Point(417, 64)
+        Me.SearchButton.Location = New System.Drawing.Point(430, 64)
         Me.SearchButton.Name = "SearchButton"
-        Me.SearchButton.Size = New System.Drawing.Size(102, 20)
+        Me.SearchButton.Size = New System.Drawing.Size(121, 65)
         Me.SearchButton.TabIndex = 0
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
         '
-        'CustomerName
-        '
-        Me.CustomerName.Location = New System.Drawing.Point(15, 64)
-        Me.CustomerName.Name = "CustomerName"
-        Me.CustomerName.Size = New System.Drawing.Size(122, 20)
-        Me.CustomerName.TabIndex = 3
-        '
-        'ProjectName
-        '
-        Me.ProjectName.Location = New System.Drawing.Point(146, 64)
-        Me.ProjectName.Name = "ProjectName"
-        Me.ProjectName.Size = New System.Drawing.Size(122, 20)
-        Me.ProjectName.TabIndex = 4
-        '
-        'FileExtension
-        '
-        Me.FileExtension.Location = New System.Drawing.Point(280, 64)
-        Me.FileExtension.Name = "FileExtension"
-        Me.FileExtension.Size = New System.Drawing.Size(122, 20)
-        Me.FileExtension.TabIndex = 5
-        '
         'FolderName
         '
+        Me.FolderName.Enabled = False
         Me.FolderName.Location = New System.Drawing.Point(15, 13)
         Me.FolderName.Name = "FolderName"
         Me.FolderName.Size = New System.Drawing.Size(121, 20)
@@ -102,7 +88,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(280, 45)
+        Me.Label3.Location = New System.Drawing.Point(278, 89)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(53, 13)
         Me.Label3.TabIndex = 10
@@ -113,26 +99,105 @@ Partial Class Form1
         Me.RichTextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox1.Location = New System.Drawing.Point(15, 99)
+        Me.RichTextBox1.Location = New System.Drawing.Point(15, 145)
         Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(504, 183)
+        Me.RichTextBox1.Size = New System.Drawing.Size(686, 171)
         Me.RichTextBox1.TabIndex = 12
         Me.RichTextBox1.Text = ""
+        '
+        'CustomerName
+        '
+        Me.CustomerName.FormattingEnabled = True
+        Me.CustomerName.Location = New System.Drawing.Point(15, 63)
+        Me.CustomerName.Name = "CustomerName"
+        Me.CustomerName.Size = New System.Drawing.Size(121, 21)
+        Me.CustomerName.TabIndex = 13
+        '
+        'ProjectName
+        '
+        Me.ProjectName.FormattingEnabled = True
+        Me.ProjectName.Location = New System.Drawing.Point(146, 63)
+        Me.ProjectName.Name = "ProjectName"
+        Me.ProjectName.Size = New System.Drawing.Size(121, 21)
+        Me.ProjectName.TabIndex = 14
+        '
+        'TypeName
+        '
+        Me.TypeName.FormattingEnabled = True
+        Me.TypeName.Location = New System.Drawing.Point(281, 63)
+        Me.TypeName.Name = "TypeName"
+        Me.TypeName.Size = New System.Drawing.Size(121, 21)
+        Me.TypeName.TabIndex = 15
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(278, 45)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(54, 13)
+        Me.Label4.TabIndex = 16
+        Me.Label4.Text = "Doc Type"
+        '
+        'FileExtension
+        '
+        Me.FileExtension.FormattingEnabled = True
+        Me.FileExtension.Location = New System.Drawing.Point(281, 108)
+        Me.FileExtension.Name = "FileExtension"
+        Me.FileExtension.Size = New System.Drawing.Size(121, 21)
+        Me.FileExtension.TabIndex = 17
+        '
+        'PartNumber
+        '
+        Me.PartNumber.Location = New System.Drawing.Point(13, 108)
+        Me.PartNumber.Name = "PartNumber"
+        Me.PartNumber.Size = New System.Drawing.Size(123, 20)
+        Me.PartNumber.TabIndex = 18
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 90)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(66, 13)
+        Me.Label5.TabIndex = 19
+        Me.Label5.Text = "Part Number"
+        '
+        'PartName
+        '
+        Me.PartName.Location = New System.Drawing.Point(146, 107)
+        Me.PartName.Name = "PartName"
+        Me.PartName.Size = New System.Drawing.Size(121, 20)
+        Me.PartName.TabIndex = 20
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(145, 90)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(57, 13)
+        Me.Label6.TabIndex = 21
+        Me.Label6.Text = "Part Name"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(534, 304)
+        Me.ClientSize = New System.Drawing.Size(716, 328)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.PartName)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.PartNumber)
+        Me.Controls.Add(Me.FileExtension)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.TypeName)
+        Me.Controls.Add(Me.ProjectName)
+        Me.Controls.Add(Me.CustomerName)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.SelectFolderButton)
         Me.Controls.Add(Me.FolderName)
-        Me.Controls.Add(Me.FileExtension)
-        Me.Controls.Add(Me.ProjectName)
-        Me.Controls.Add(Me.CustomerName)
         Me.Controls.Add(Me.SearchButton)
         Me.MinimumSize = New System.Drawing.Size(550, 343)
         Me.Name = "Form1"
@@ -143,9 +208,6 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents SearchButton As Button
-    Friend WithEvents CustomerName As TextBox
-    Friend WithEvents ProjectName As TextBox
-    Friend WithEvents FileExtension As TextBox
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents FolderName As TextBox
     Friend WithEvents SelectFolderButton As Button
@@ -153,4 +215,13 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents CustomerName As ComboBox
+    Friend WithEvents ProjectName As ComboBox
+    Friend WithEvents TypeName As ComboBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents FileExtension As ComboBox
+    Friend WithEvents PartNumber As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents PartName As TextBox
+    Friend WithEvents Label6 As Label
 End Class
