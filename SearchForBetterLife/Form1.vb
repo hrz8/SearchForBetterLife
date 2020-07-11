@@ -26,7 +26,6 @@ Public Class Form1
 	End Sub
 
 	Private Sub RichTextBox1_LinkClicked(sender As Object, e As LinkClickedEventArgs) Handles RichTextBox1.LinkClicked
-		Dim filepath = New Uri(e.LinkText, True).AbsolutePath
-		Process.Start(filepath)
+		Process.Start(New Uri(e.LinkText, True).AbsolutePath)
 	End Sub
 End Class
