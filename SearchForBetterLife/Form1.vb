@@ -6,7 +6,7 @@ Public Class Form1
 
 	Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
 		Try
-			For Each dirItemTemp In Directory.GetFileSystemEntries(FolderName.Text, "*." & FileExtension.Text, SearchOption.AllDirectories) _
+			For Each dirItemTemp In Directory.EnumerateFiles(FolderName.Text, "*." & FileExtension.Text, SearchOption.AllDirectories) _
 					.Where(Function(file) file.IndexOf(ProjectName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1 _
 										  AndAlso file.IndexOf(CustomerName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1) _
 					.ToList()
