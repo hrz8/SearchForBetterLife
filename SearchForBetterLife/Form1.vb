@@ -13,6 +13,7 @@ Public Class Form1
 	End Sub
 
 	Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
+		SearchButton.Enabled = False
 		If FolderName.Text IsNot "" Then
 			RichTextBox1.Text = ""
 			Try
@@ -50,6 +51,7 @@ Public Class Form1
 		Else
 			MsgBox("select path")
 		End If
+		SearchButton.Enabled = True
 	End Sub
 
 	Private Sub SelectFolderButton_Click(sender As Object, e As EventArgs) Handles SelectFolderButton.Click
