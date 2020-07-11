@@ -27,13 +27,23 @@ Public Class Form1
 						.ToList()
 					Dim dirItem As String = dirItemTemp.Replace("\", "/")
 					resultPath.Add("file://" & dirItem)
+					Dim currLen As Integer = Len(RichTextBox1.Text)
+					RichTextBox1.SelectionFont = New Font("Microsoft Sans Serif", 12)
+					RichTextBox1.SelectionStart = currLen
+					Dim catchedFileName As String = dirItem.Substring(dirItem.LastIndexOf("/") + 1)
+					RichTextBox1.AppendText(catchedFileName & vbNewLine)
+					RichTextBox1.SelectionLength = Len(catchedFileName)
 					RichTextBox1.AppendText("""file://" & dirItem & """" & vbNewLine & vbNewLine)
 					RichTextBox1.SelectionStart = Len(RichTextBox1.Text)
 					RichTextBox1.ScrollToCaret()
 					RichTextBox1.Select()
 					i += 1
 				Next
-				MsgBox("Found " & i & " item(s)")
+				If i = 0 Then
+					MsgBox("not found")
+				Else
+					MsgBox("Found " & i & " item(s)")
+				End If
 			Catch err As UnauthorizedAccessException
 				MsgBox(err)
 			End Try
