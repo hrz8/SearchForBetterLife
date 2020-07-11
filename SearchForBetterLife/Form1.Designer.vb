@@ -110,6 +110,9 @@ Partial Class Form1
         '
         'RichTextBox1
         '
+        Me.RichTextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RichTextBox1.Location = New System.Drawing.Point(15, 99)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.Size = New System.Drawing.Size(504, 183)
@@ -131,6 +134,7 @@ Partial Class Form1
         Me.Controls.Add(Me.ProjectName)
         Me.Controls.Add(Me.CustomerName)
         Me.Controls.Add(Me.SearchButton)
+        Me.MinimumSize = New System.Drawing.Size(550, 343)
         Me.Name = "Form1"
         Me.Text = "Search"
         Me.ResumeLayout(False)

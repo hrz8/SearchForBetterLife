@@ -2,6 +2,8 @@
 Imports System.IO
 
 Public Class Form1
+	Private resultPath As New List(Of String)
+
 	Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
 		Try
 			For Each dirItemTemp In Directory.GetFileSystemEntries(FolderName.Text, "*." & FileExtension.Text, SearchOption.AllDirectories) _
@@ -9,7 +11,8 @@ Public Class Form1
 										  AndAlso file.IndexOf(CustomerName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1) _
 					.ToList()
 				Dim dirItem As String = dirItemTemp.Replace("\", "/")
-				RichTextBox1.AppendText("file://" & dirItem & vbNewLine & vbNewLine)
+				resultPath.Add("file://" & dirItem)
+				RichTextBox1.AppendText("""file://" & dirItem & """" & vbNewLine & vbNewLine)
 				RichTextBox1.SelectionStart = Len(RichTextBox1.Text)
 				RichTextBox1.ScrollToCaret()
 				RichTextBox1.Select()
