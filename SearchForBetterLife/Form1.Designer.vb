@@ -181,9 +181,6 @@ Partial Class Form1
         Me.Label6.TabIndex = 21
         Me.Label6.Text = "Part Name"
         '
-        'Timer1
-        '
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -207,6 +204,7 @@ Partial Class Form1
         Me.Controls.Add(Me.SearchButton)
         Me.MinimumSize = New System.Drawing.Size(550, 343)
         Me.Name = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Search"
         Me.ResumeLayout(False)
         Me.PerformLayout()
