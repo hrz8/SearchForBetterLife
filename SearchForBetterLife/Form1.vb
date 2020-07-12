@@ -26,6 +26,9 @@ Public Class Form1
 									  And file.IndexOf(PartName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1) _
 				.ToList()
 			Dim dirItem As String = dirItemTemp.Replace("\", "/")
+			Dim itemInfo As FileInfo = My.Computer.FileSystem.GetFileInfo(dirItem)
+			Dim createdAt As String = itemInfo.CreationTime.ToString("dd/MM/yyyy hh:mm:ss")
+			Dim updatedAt As String = itemInfo.LastWriteTime.ToString("dd/MM/yyyy hh:mm:ss")
 			resultPath.Add("file://" & dirItem)
 			Dim currLen As Integer = Len(RichTextBox1.Text)
 			RichTextBox1.SelectionFont = New Font("Microsoft Sans Serif", 12)
@@ -33,6 +36,8 @@ Public Class Form1
 			Dim catchedFileName As String = dirItem.Substring(dirItem.LastIndexOf("/") + 1)
 			RichTextBox1.AppendText(catchedFileName & vbNewLine)
 			RichTextBox1.SelectionLength = Len(catchedFileName)
+			RichTextBox1.AppendText("created at:" & createdAt & vbNewLine)
+			RichTextBox1.AppendText("updated at:" & updatedAt & vbNewLine)
 			RichTextBox1.AppendText("""file://" & dirItem & """" & vbNewLine & vbNewLine)
 			RichTextBox1.SelectionStart = Len(RichTextBox1.Text)
 			RichTextBox1.ScrollToCaret()
