@@ -30,7 +30,6 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.CustomerName = New System.Windows.Forms.ComboBox()
         Me.ProjectName = New System.Windows.Forms.ComboBox()
         Me.TypeName = New System.Windows.Forms.ComboBox()
@@ -41,14 +40,16 @@ Partial Class Form1
         Me.PartName = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SearchButton
         '
-        Me.SearchButton.Location = New System.Drawing.Point(430, 64)
+        Me.SearchButton.Location = New System.Drawing.Point(422, 64)
         Me.SearchButton.Name = "SearchButton"
         Me.SearchButton.Size = New System.Drawing.Size(121, 65)
-        Me.SearchButton.TabIndex = 0
+        Me.SearchButton.TabIndex = 8
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
         '
@@ -58,14 +59,14 @@ Partial Class Form1
         Me.FolderName.Location = New System.Drawing.Point(15, 13)
         Me.FolderName.Name = "FolderName"
         Me.FolderName.Size = New System.Drawing.Size(121, 20)
-        Me.FolderName.TabIndex = 6
+        Me.FolderName.TabIndex = 0
         '
         'SelectFolderButton
         '
         Me.SelectFolderButton.Location = New System.Drawing.Point(146, 13)
         Me.SelectFolderButton.Name = "SelectFolderButton"
         Me.SelectFolderButton.Size = New System.Drawing.Size(122, 23)
-        Me.SelectFolderButton.TabIndex = 7
+        Me.SelectFolderButton.TabIndex = 1
         Me.SelectFolderButton.Text = "Select Folder"
         Me.SelectFolderButton.UseVisualStyleBackColor = True
         '
@@ -96,25 +97,13 @@ Partial Class Form1
         Me.Label3.TabIndex = 10
         Me.Label3.Text = "Extension"
         '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox1.Location = New System.Drawing.Point(13, 145)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(691, 171)
-        Me.RichTextBox1.TabIndex = 12
-        Me.RichTextBox1.Text = ""
-        Me.RichTextBox1.WordWrap = False
-        '
         'CustomerName
         '
         Me.CustomerName.FormattingEnabled = True
         Me.CustomerName.Location = New System.Drawing.Point(15, 63)
         Me.CustomerName.Name = "CustomerName"
         Me.CustomerName.Size = New System.Drawing.Size(121, 21)
-        Me.CustomerName.TabIndex = 13
+        Me.CustomerName.TabIndex = 2
         '
         'ProjectName
         '
@@ -122,7 +111,7 @@ Partial Class Form1
         Me.ProjectName.Location = New System.Drawing.Point(146, 63)
         Me.ProjectName.Name = "ProjectName"
         Me.ProjectName.Size = New System.Drawing.Size(121, 21)
-        Me.ProjectName.TabIndex = 14
+        Me.ProjectName.TabIndex = 3
         '
         'TypeName
         '
@@ -130,7 +119,7 @@ Partial Class Form1
         Me.TypeName.Location = New System.Drawing.Point(281, 63)
         Me.TypeName.Name = "TypeName"
         Me.TypeName.Size = New System.Drawing.Size(121, 21)
-        Me.TypeName.TabIndex = 15
+        Me.TypeName.TabIndex = 4
         '
         'Label4
         '
@@ -147,14 +136,14 @@ Partial Class Form1
         Me.FileExtension.Location = New System.Drawing.Point(281, 108)
         Me.FileExtension.Name = "FileExtension"
         Me.FileExtension.Size = New System.Drawing.Size(121, 21)
-        Me.FileExtension.TabIndex = 17
+        Me.FileExtension.TabIndex = 7
         '
         'PartNumber
         '
-        Me.PartNumber.Location = New System.Drawing.Point(13, 108)
+        Me.PartNumber.Location = New System.Drawing.Point(15, 108)
         Me.PartNumber.Name = "PartNumber"
-        Me.PartNumber.Size = New System.Drawing.Size(123, 20)
-        Me.PartNumber.TabIndex = 18
+        Me.PartNumber.Size = New System.Drawing.Size(121, 20)
+        Me.PartNumber.TabIndex = 5
         '
         'Label5
         '
@@ -170,7 +159,7 @@ Partial Class Form1
         Me.PartName.Location = New System.Drawing.Point(146, 107)
         Me.PartName.Name = "PartName"
         Me.PartName.Size = New System.Drawing.Size(121, 20)
-        Me.PartName.TabIndex = 20
+        Me.PartName.TabIndex = 6
         '
         'Label6
         '
@@ -181,11 +170,26 @@ Partial Class Form1
         Me.Label6.TabIndex = 21
         Me.Label6.Text = "Part Name"
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(15, 154)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.Size = New System.Drawing.Size(528, 187)
+        Me.DataGridView1.TabIndex = 9
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(716, 328)
+        Me.ClientSize = New System.Drawing.Size(555, 353)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.PartName)
         Me.Controls.Add(Me.Label5)
@@ -195,17 +199,17 @@ Partial Class Form1
         Me.Controls.Add(Me.TypeName)
         Me.Controls.Add(Me.ProjectName)
         Me.Controls.Add(Me.CustomerName)
-        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.SelectFolderButton)
         Me.Controls.Add(Me.FolderName)
         Me.Controls.Add(Me.SearchButton)
-        Me.MinimumSize = New System.Drawing.Size(550, 343)
+        Me.MinimumSize = New System.Drawing.Size(571, 392)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Search"
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -218,7 +222,6 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents CustomerName As ComboBox
     Friend WithEvents ProjectName As ComboBox
     Friend WithEvents TypeName As ComboBox
@@ -229,4 +232,5 @@ Partial Class Form1
     Friend WithEvents PartName As TextBox
     Friend WithEvents Label6 As Label
     Private WithEvents Timer1 As Timer
+    Friend WithEvents DataGridView1 As DataGridView
 End Class

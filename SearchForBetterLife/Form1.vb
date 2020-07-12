@@ -2,17 +2,31 @@
 Imports System.IO
 
 Public Class Form1
-	Private resultPath As New List(Of String)
 	Private programPath As String
-	Private sec As Double
 
 	Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 		programPath = My.Application.Info.DirectoryPath
-		sec = 0.0
 		CustomerName.Items.AddRange(File.ReadAllLines(programPath & "\customers.txt"))
 		ProjectName.Items.AddRange(File.ReadAllLines(programPath & "\projects.txt"))
 		TypeName.Items.AddRange(File.ReadAllLines(programPath & "\types.txt"))
 		FileExtension.Items.AddRange(File.ReadAllLines(programPath & "\extensions.txt"))
+		'init data grid
+		Dim fileName As DataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+		fileName.DataPropertyName = "File Name"
+		fileName.Name = "File Name"
+		DataGridView1.Columns.Add(fileName)
+		Dim loc As DataGridViewLinkColumn = New DataGridViewLinkColumn()
+		loc.DataPropertyName = "Location"
+		loc.Name = "Location"
+		DataGridView1.Columns.Add(loc)
+		Dim crt As DataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+		crt.DataPropertyName = "Created At"
+		crt.Name = "Created At"
+		DataGridView1.Columns.Add(crt)
+		Dim upd As DataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+		upd.DataPropertyName = "Updated At"
+		upd.Name = "Updated At"
+		DataGridView1.Columns.Add(upd)
 	End Sub
 
 	Private Function GetTheFiles() As Integer
@@ -26,22 +40,11 @@ Public Class Form1
 									  And file.IndexOf(PartName.Text, 0, StringComparison.CurrentCultureIgnoreCase) > -1) _
 				.ToList()
 			Dim dirItem As String = dirItemTemp.Replace("\", "/")
+			Dim catchedFileName As String = dirItem.Substring(dirItem.LastIndexOf("/") + 1)
 			Dim itemInfo As FileInfo = My.Computer.FileSystem.GetFileInfo(dirItem)
 			Dim createdAt As String = itemInfo.CreationTime.ToString("dd/MM/yyyy hh:mm:ss")
 			Dim updatedAt As String = itemInfo.LastWriteTime.ToString("dd/MM/yyyy hh:mm:ss")
-			resultPath.Add("file://" & dirItem)
-			Dim currLen As Integer = Len(RichTextBox1.Text)
-			RichTextBox1.SelectionFont = New Font("Microsoft Sans Serif", 12)
-			RichTextBox1.SelectionStart = currLen
-			Dim catchedFileName As String = dirItem.Substring(dirItem.LastIndexOf("/") + 1)
-			RichTextBox1.AppendText(catchedFileName & vbNewLine)
-			RichTextBox1.SelectionLength = Len(catchedFileName)
-			RichTextBox1.AppendText("created at:" & createdAt & vbNewLine)
-			RichTextBox1.AppendText("updated at:" & updatedAt & vbNewLine)
-			RichTextBox1.AppendText("""file://" & dirItem & """" & vbNewLine & vbNewLine)
-			RichTextBox1.SelectionStart = Len(RichTextBox1.Text)
-			RichTextBox1.ScrollToCaret()
-			RichTextBox1.Select()
+			DataGridView1.Rows.Add(catchedFileName, "file://" & dirItem, createdAt, updatedAt)
 			i += 1
 		Next
 		Return i
@@ -49,8 +52,8 @@ Public Class Form1
 
 	Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
 		If FolderName.Text IsNot "" Then
-			RichTextBox1.Text = ""
 			SearchButton.Enabled = False
+			DataGridView1.Rows.Clear()
 			SearchButton.Text = "Searching..."
 			Try
 				Dim total As Integer = GetTheFiles()
@@ -76,7 +79,10 @@ Public Class Form1
 		End If
 	End Sub
 
-	Private Sub RichTextBox1_LinkClicked(sender As Object, e As LinkClickedEventArgs) Handles RichTextBox1.LinkClicked
-		Process.Start(New Uri(e.LinkText, True).AbsolutePath)
+
+	Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+		If e.ColumnIndex = 1 Then
+			Process.Start(New Uri(DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString(), True).AbsolutePath)
+		End If
 	End Sub
 End Class
