@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.SearchButton = New System.Windows.Forms.Button()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.FolderName = New System.Windows.Forms.TextBox()
@@ -39,6 +40,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.PartName = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'SearchButton
@@ -179,6 +181,9 @@ Partial Class Form1
         Me.Label6.TabIndex = 21
         Me.Label6.Text = "Part Name"
         '
+        'Timer1
+        '
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -225,4 +230,5 @@ Partial Class Form1
     Friend WithEvents Label5 As Label
     Friend WithEvents PartName As TextBox
     Friend WithEvents Label6 As Label
+    Private WithEvents Timer1 As Timer
 End Class
