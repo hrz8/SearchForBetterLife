@@ -41,7 +41,7 @@ Public Class Form1
 				.ToList()
 			Dim dirItem As String = dirItemTemp.Replace("\", "/")
 			Dim catchedFileName As String = dirItem.Substring(dirItem.LastIndexOf("/") + 1)
-			Dim itemInfo As FileInfo = My.Computer.FileSystem.GetFileInfo(dirItem)
+			Dim itemInfo As New FileInfo(dirItem)
 			Dim createdAt As String = itemInfo.CreationTime.ToString("dd/MM/yyyy hh:mm:ss")
 			Dim updatedAt As String = itemInfo.LastWriteTime.ToString("dd/MM/yyyy hh:mm:ss")
 			DataGridView1.Rows.Add(catchedFileName, "file://" & dirItem, createdAt, updatedAt)
