@@ -24,7 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.SearchButton = New System.Windows.Forms.Button()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.FolderName = New System.Windows.Forms.TextBox()
         Me.SelectFolderButton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -41,6 +40,15 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.CustomersDataRTB = New System.Windows.Forms.RichTextBox()
+        Me.SaveCustomer = New System.Windows.Forms.Button()
+        Me.Refresh = New System.Windows.Forms.Button()
+        Me.SaveProject = New System.Windows.Forms.Button()
+        Me.ProjectsDataRTB = New System.Windows.Forms.RichTextBox()
+        Me.DocTypeDataRTB = New System.Windows.Forms.RichTextBox()
+        Me.ExtensionDataRTB = New System.Windows.Forms.RichTextBox()
+        Me.SaveDocType = New System.Windows.Forms.Button()
+        Me.SaveExtension = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -181,14 +189,100 @@ Partial Class Form1
         Me.DataGridView1.Location = New System.Drawing.Point(15, 154)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(528, 187)
+        Me.DataGridView1.Size = New System.Drawing.Size(528, 141)
         Me.DataGridView1.TabIndex = 9
+        '
+        'CustomersDataRTB
+        '
+        Me.CustomersDataRTB.Location = New System.Drawing.Point(15, 310)
+        Me.CustomersDataRTB.Name = "CustomersDataRTB"
+        Me.CustomersDataRTB.Size = New System.Drawing.Size(121, 96)
+        Me.CustomersDataRTB.TabIndex = 22
+        Me.CustomersDataRTB.Text = ""
+        '
+        'SaveCustomer
+        '
+        Me.SaveCustomer.Location = New System.Drawing.Point(15, 412)
+        Me.SaveCustomer.Name = "SaveCustomer"
+        Me.SaveCustomer.Size = New System.Drawing.Size(121, 23)
+        Me.SaveCustomer.TabIndex = 23
+        Me.SaveCustomer.Text = "Save Customers"
+        Me.SaveCustomer.UseVisualStyleBackColor = True
+        '
+        'Refresh
+        '
+        Me.Refresh.Location = New System.Drawing.Point(468, 10)
+        Me.Refresh.Name = "Refresh"
+        Me.Refresh.Size = New System.Drawing.Size(75, 23)
+        Me.Refresh.TabIndex = 24
+        Me.Refresh.Text = "Refresh"
+        Me.Refresh.UseVisualStyleBackColor = True
+        '
+        'SaveProject
+        '
+        Me.SaveProject.Location = New System.Drawing.Point(151, 413)
+        Me.SaveProject.Name = "SaveProject"
+        Me.SaveProject.Size = New System.Drawing.Size(121, 23)
+        Me.SaveProject.TabIndex = 25
+        Me.SaveProject.Text = "Save Projects"
+        Me.SaveProject.UseVisualStyleBackColor = True
+        '
+        'ProjectsDataRTB
+        '
+        Me.ProjectsDataRTB.Location = New System.Drawing.Point(152, 310)
+        Me.ProjectsDataRTB.Name = "ProjectsDataRTB"
+        Me.ProjectsDataRTB.Size = New System.Drawing.Size(121, 96)
+        Me.ProjectsDataRTB.TabIndex = 26
+        Me.ProjectsDataRTB.Text = ""
+        '
+        'DocTypeDataRTB
+        '
+        Me.DocTypeDataRTB.Location = New System.Drawing.Point(289, 310)
+        Me.DocTypeDataRTB.Name = "DocTypeDataRTB"
+        Me.DocTypeDataRTB.Size = New System.Drawing.Size(121, 96)
+        Me.DocTypeDataRTB.TabIndex = 27
+        Me.DocTypeDataRTB.Text = ""
+        '
+        'ExtensionDataRTB
+        '
+        Me.ExtensionDataRTB.Location = New System.Drawing.Point(422, 310)
+        Me.ExtensionDataRTB.Name = "ExtensionDataRTB"
+        Me.ExtensionDataRTB.Size = New System.Drawing.Size(121, 96)
+        Me.ExtensionDataRTB.TabIndex = 28
+        Me.ExtensionDataRTB.Text = ""
+        '
+        'SaveDocType
+        '
+        Me.SaveDocType.Location = New System.Drawing.Point(289, 411)
+        Me.SaveDocType.Name = "SaveDocType"
+        Me.SaveDocType.Size = New System.Drawing.Size(121, 23)
+        Me.SaveDocType.TabIndex = 29
+        Me.SaveDocType.Text = "Save Doc Type"
+        Me.SaveDocType.UseVisualStyleBackColor = True
+        '
+        'SaveExtension
+        '
+        Me.SaveExtension.Location = New System.Drawing.Point(422, 411)
+        Me.SaveExtension.Name = "SaveExtension"
+        Me.SaveExtension.Size = New System.Drawing.Size(121, 23)
+        Me.SaveExtension.TabIndex = 30
+        Me.SaveExtension.Text = "Save Extension"
+        Me.SaveExtension.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(555, 353)
+        Me.ClientSize = New System.Drawing.Size(555, 451)
+        Me.Controls.Add(Me.SaveExtension)
+        Me.Controls.Add(Me.SaveDocType)
+        Me.Controls.Add(Me.ExtensionDataRTB)
+        Me.Controls.Add(Me.DocTypeDataRTB)
+        Me.Controls.Add(Me.ProjectsDataRTB)
+        Me.Controls.Add(Me.SaveProject)
+        Me.Controls.Add(Me.Refresh)
+        Me.Controls.Add(Me.SaveCustomer)
+        Me.Controls.Add(Me.CustomersDataRTB)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.PartName)
@@ -216,7 +310,6 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents SearchButton As Button
-    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents FolderName As TextBox
     Friend WithEvents SelectFolderButton As Button
     Friend WithEvents Label1 As Label
@@ -233,4 +326,13 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Private WithEvents Timer1 As Timer
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents CustomersDataRTB As RichTextBox
+    Friend WithEvents SaveCustomer As Button
+    Friend WithEvents Refresh As Button
+    Friend WithEvents SaveProject As Button
+    Friend WithEvents ProjectsDataRTB As RichTextBox
+    Friend WithEvents DocTypeDataRTB As RichTextBox
+    Friend WithEvents ExtensionDataRTB As RichTextBox
+    Friend WithEvents SaveDocType As Button
+    Friend WithEvents SaveExtension As Button
 End Class
