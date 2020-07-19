@@ -22,7 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.SearchButton = New System.Windows.Forms.Button()
         Me.FolderName = New System.Windows.Forms.TextBox()
         Me.SelectFolderButton = New System.Windows.Forms.Button()
@@ -38,7 +37,6 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.PartName = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CustomersDataRTB = New System.Windows.Forms.RichTextBox()
         Me.SaveCustomer = New System.Windows.Forms.Button()
@@ -180,9 +178,7 @@ Partial Class Form1
         '
         'DataGridView1
         '
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -273,7 +269,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(555, 451)
+        Me.ClientSize = New System.Drawing.Size(558, 451)
         Me.Controls.Add(Me.SaveExtension)
         Me.Controls.Add(Me.SaveDocType)
         Me.Controls.Add(Me.ExtensionDataRTB)
@@ -299,8 +295,9 @@ Partial Class Form1
         Me.Controls.Add(Me.SelectFolderButton)
         Me.Controls.Add(Me.FolderName)
         Me.Controls.Add(Me.SearchButton)
-        Me.MinimumSize = New System.Drawing.Size(571, 392)
+        Me.MinimumSize = New System.Drawing.Size(574, 490)
         Me.Name = "Form1"
+        Me.Opacity = 0.9R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Search"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -324,7 +321,6 @@ Partial Class Form1
     Friend WithEvents Label5 As Label
     Friend WithEvents PartName As TextBox
     Friend WithEvents Label6 As Label
-    Private WithEvents Timer1 As Timer
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents CustomersDataRTB As RichTextBox
     Friend WithEvents SaveCustomer As Button
