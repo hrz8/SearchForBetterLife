@@ -2,12 +2,20 @@
 Imports System.IO
 Imports System.Reflection
 Imports System.Text.RegularExpressions
+Imports System.Threading
+Imports FastDirectory
 
 Public Class Form1
     Private programPath As String
+    Private total As Integer
+    Private dir As DirectoryInfo
+    Private t As New Thread(AddressOf ThreadQ)
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'FolderName.Text = "\\wsl$\Ubuntu-18.04\home\hirzi\repos\eji"
+        CheckForIllegalCrossThreadCalls = False
+        StopButton.Enabled = False
+
+        'FolderName.Text = "\\wsl$\Ubuntu-18.04\home\hirzi\repos"
         programPath = My.Application.Info.DirectoryPath
         CustomerName.Items.AddRange(File.ReadAllLines(programPath & "\customers.txt"))
         ProjectName.Items.AddRange(File.ReadAllLines(programPath & "\projects.txt"))
@@ -37,47 +45,61 @@ Public Class Form1
         DataGridView1.Columns.Add(upd)
     End Sub
 
-    Private Function GetTheFiles() As Integer
-        Dim i As Integer = 0
-        Dim varFileExt As String = If(FileExtension.Text Is "", "*", FileExtension.SelectedItem.ToString)
-        Dim projName As String = If(ProjectName.SelectedItem Is Nothing, "", ProjectName.SelectedItem.ToString)
-        Dim custName As String = If(CustomerName.SelectedItem Is Nothing, "", CustomerName.SelectedItem.ToString)
+    Private Sub GetTheFiles(dirIn As DirectoryInfo)
+        Dim varFileExt As String = If(FileExtension.Text Is "", "*", FileExtension.SelectedItem.ToString())
+        Dim projName As String = If(ProjectName.SelectedItem Is Nothing, "", ProjectName.SelectedItem.ToString())
+        Dim custName As String = If(CustomerName.SelectedItem Is Nothing, "", CustomerName.SelectedItem.ToString())
         Dim typName As String = If(TypeName.SelectedItem Is Nothing, "", TypeName.SelectedItem.ToString)
         Dim pattern As String = "(?=.*" & projName & ")(?=.*" & custName & ")(?=.*" & typName & ")(?=.*" & PartNumber.Text & ")(?=.*" & PartName.Text & ").*." & varFileExt
-        Dim all = Directory.EnumerateFiles(FolderName.Text, "*." & varFileExt, SearchOption.AllDirectories)
-        For Each dirItem In all _
-                .Where(Function(path) Regex.IsMatch(path, pattern, RegexOptions.IgnoreCase)) _
+
+        For Each dirItem In FastDirectoryEnumerator.EnumerateFiles(dirIn.FullName, "*." & varFileExt).AsParallel() _
+                .Where(Function(path) Regex.IsMatch(path.Path, pattern, RegexOptions.IgnoreCase)) _
                 .ToList()
-            Dim itemInfo As New FileInfo(dirItem)
+            Dim itemInfo As New FileInfo(dirItem.Path)
             DataGridView1.Rows.Add(
                 itemInfo.Name,
                 itemInfo.DirectoryName,
                 itemInfo.CreationTime.ToString("dd/MM/yyyy hh:mm:ss"),
                 itemInfo.LastWriteTime.ToString("dd/MM/yyyy hh:mm:ss")
             )
-            i += 1
+            total += 1
         Next
-        Return i
-    End Function
+
+        For Each d In dirIn.EnumerateDirectories("*" & projName & "*").AsParallel()
+            GetTheFiles(d)
+        Next
+    End Sub
+
+    Private Sub ThreadQ()
+        dir = New DirectoryInfo(FolderName.Text)
+        total = 0
+        SearchButton.Enabled = False
+        StopButton.Enabled = True
+        DataGridView1.Rows.Clear()
+        SearchButton.Text = "Searching..."
+        GetTheFiles(dir)
+        SearchButton.Text = "Search"
+        SearchButton.Enabled = True
+        StopButton.Enabled = False
+        If total = 0 Then
+            MsgBox("not found")
+        Else
+            MsgBox("found " & total & " item(s)")
+        End If
+    End Sub
 
     Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
         If FolderName.Text IsNot "" Then
-            SearchButton.Enabled = False
-            DataGridView1.Rows.Clear()
-            SearchButton.Text = "Searching..."
             Try
-                Dim total As Integer = GetTheFiles()
-                SearchButton.Text = "Search"
-                If total = 0 Then
-                    MsgBox("not found")
-                Else
-                    MsgBox("found " & total & " item(s)")
-                End If
+                t = Nothing
+                t = New Thread(AddressOf ThreadQ)
+                t.IsBackground = True
+                t.Start()
             Catch err As UnauthorizedAccessException
+                SearchButton.Enabled = True
                 SearchButton.Text = "Search"
                 MsgBox(err.Message)
             End Try
-            SearchButton.Enabled = True
         Else
             MsgBox("select path")
         End If
@@ -134,5 +156,12 @@ Public Class Form1
     Private Sub SaveExtension_Click(sender As Object, e As EventArgs) Handles SaveExtension.Click
         File.WriteAllText(programPath & "/extensions.txt", ExtensionDataRTB.Text)
         MsgBox("extension updated!")
+    End Sub
+
+    Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
+        t.Abort()
+        SearchButton.Text = "Search"
+        SearchButton.Enabled = True
+        StopButton.Enabled = False
     End Sub
 End Class

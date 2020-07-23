@@ -47,6 +47,7 @@ Partial Class Form1
         Me.ExtensionDataRTB = New System.Windows.Forms.RichTextBox()
         Me.SaveDocType = New System.Windows.Forms.Button()
         Me.SaveExtension = New System.Windows.Forms.Button()
+        Me.StopButton = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -54,7 +55,7 @@ Partial Class Form1
         '
         Me.SearchButton.Location = New System.Drawing.Point(422, 64)
         Me.SearchButton.Name = "SearchButton"
-        Me.SearchButton.Size = New System.Drawing.Size(121, 65)
+        Me.SearchButton.Size = New System.Drawing.Size(121, 28)
         Me.SearchButton.TabIndex = 8
         Me.SearchButton.Text = "Search"
         Me.SearchButton.UseVisualStyleBackColor = True
@@ -265,11 +266,21 @@ Partial Class Form1
         Me.SaveExtension.Text = "Save Extension"
         Me.SaveExtension.UseVisualStyleBackColor = True
         '
+        'StopButton
+        '
+        Me.StopButton.Location = New System.Drawing.Point(422, 101)
+        Me.StopButton.Name = "StopButton"
+        Me.StopButton.Size = New System.Drawing.Size(121, 28)
+        Me.StopButton.TabIndex = 31
+        Me.StopButton.Text = "Stop"
+        Me.StopButton.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(558, 451)
+        Me.Controls.Add(Me.StopButton)
         Me.Controls.Add(Me.SaveExtension)
         Me.Controls.Add(Me.SaveDocType)
         Me.Controls.Add(Me.ExtensionDataRTB)
@@ -331,4 +342,5 @@ Partial Class Form1
     Friend WithEvents ExtensionDataRTB As RichTextBox
     Friend WithEvents SaveDocType As Button
     Friend WithEvents SaveExtension As Button
+    Friend WithEvents StopButton As Button
 End Class
